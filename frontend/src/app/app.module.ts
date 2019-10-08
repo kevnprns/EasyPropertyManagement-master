@@ -3,11 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { ApiClientModule } from './api/client/api-client.module';
 import { AppComponent } from './app.component';
+import { PropertyComponent } from './property/property.component';
+import { PropertyListComponent } from './property-list/property-list.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PropertyComponent,
+    PropertyListComponent
   ],
   imports: [
     BrowserModule,

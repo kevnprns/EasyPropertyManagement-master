@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     this.propertyService.queryProperties()
       .subscribe(properties => {
         this.properties = properties;
+        console.log(this.properties)
       });
   }
 }

@@ -1,0 +1,7 @@
+<h2>
+  <p>Name: {{ property.name }}</p>
+  <p>Address: {{ property.address }}</p>
+</h2>
+<ul>
+  <li *ngFor="let unit of this.property.units">{{ unit.number }} {{ unit.floor }} {{ unit.rent }} {{ unit.vacant }}</li>
+</ul>
