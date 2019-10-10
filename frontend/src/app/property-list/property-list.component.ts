@@ -10,18 +10,14 @@ import { Property } from '../api/client/properties/property.service';
 export class PropertyListComponent implements OnInit {
   @Input() properties: Property [];
   selectedProperty: Property;
-  showProperty: boolean;
 
-  constructor() {
-    this.showProperty = false;
-    // this.selectedProperty = { _id:"undefined", name:"undefined", address:"undefined", units:[]};
-  }
+  constructor() {}
 
   ngOnInit() {
   }
 
-  selectProperty(property: Property) { this.selectedProperty = property;  console.log(this.selectedProperty); };
+  selectProperty(property: Property) { this.selectedProperty = null; this.selectedProperty = property; };
 
-  unselectProperty(){ this.selectedProperty = null;  console.log(this.selectedProperty); }
+  unselectProperty(){ this.selectedProperty = null; }
 
 }

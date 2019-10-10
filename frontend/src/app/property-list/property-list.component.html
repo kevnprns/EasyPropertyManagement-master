@@ -1,17 +1,34 @@
-<h2>Properties: </h2>
+<br>
+<h2 class="uk-margin-top uk-margin-large-left">Properties: </h2>
 
-<ul>
-  <li *ngFor="let property of properties">
-
-    <h2>
-      <button (click)="selectProperty(property)">{{ property.name }} {{ property.address }}</button>
-    </h2>
-
-  </li>
-
-  <div *ngIf="selectedProperty">
-    <button (click)="unselectProperty()">Unselect Property</button>
-    <app-property [property]="selectedProperty"></app-property>
+<div class="uk-margin-small uk-margin-medium-left uk-margin-medium-right">
+  <div class="uk-margin-small uk-card uk-card-default uk-card-body">
+    <table class="uk-table uk-table-striped uk-table-hover uk-table-justify">
+      <thead>
+          <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th># of units</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let property of properties"  href="#modal-center" uk-toggle (click)="selectProperty(property)">
+              <td>{{ property.name }}</td>
+              <td>{{ property.address }}</td>
+              <td>{{ property.units.length }}</td>
+          </tr>
+      </tbody>
+    </table>
   </div>
+</div>
 
-</ul>
+<div id="modal-center" class="uk-flex-top" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body uk-margin-auto-vertical">
+
+        <button class="uk-modal-close-default" type="button" uk-close></button>
+
+        <div *ngIf="selectedProperty">
+          <app-property [property]="selectedProperty" ></app-property>
+        </div>
+    </div>
+</div>

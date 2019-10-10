@@ -12,9 +12,4 @@ export class PropertyComponent implements OnInit {
 
   constructor() {  }
 
-  ngOnInit() {
-    
-  }
-
-
 }

@@ -1,7 +1,31 @@
-<h2>
-  <p>Name: {{ property.name }}</p>
-  <p>Address: {{ property.address }}</p>
-</h2>
-<ul>
-  <li *ngFor="let unit of this.property.units">{{ unit.number }} {{ unit.floor }} {{ unit.rent }} {{ unit.vacant }}</li>
-</ul>
+<div class="property-name">{{ property.name }}</div>
+<div class="property-address uk-margin-bottom">{{ property.address }}</div>
+
+Vacant: <span uk-icon="check"></span>
+Occupied: <span uk-icon="close"></span>
+Not Defined: <span uk-icon="question"></span>
+
+<div uk-overflow-auto class="uk-margin uk-margin-left uk-margin-right">
+  <table class="uk-table uk-table-small uk-table-justify uk-table-divider" >
+      <thead>
+          <tr>
+              <th>Vacant</th>
+              <th>Floor</th>
+              <th>Unit</th>
+              <th>Rental Cost</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let unit of this.property.units" class="uk-primary">
+              <td>
+                <span *ngIf="unit.vacant == true" uk-icon="check"></span>
+                <span *ngIf="unit.vacant == false" uk-icon="close"></span>
+                <span *ngIf="unit.vacant == undefined" uk-icon="question"></span>
+              </td>
+              <td>{{ unit.floor }}</td>
+              <td>{{ unit.number }}</td>
+              <td>${{ unit.rent }}</td>
+          </tr>
+      </tbody>
+  </table>
+</div>
