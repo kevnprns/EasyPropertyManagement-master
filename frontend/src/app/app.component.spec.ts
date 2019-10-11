@@ -28,6 +28,11 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app.title).toEqual('Easy Property Management');
   }));
+  it(`should have as pages '[ "Property Manager", "Tenant Request" ]'`, async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.pages).toEqual([ "Property Manager", "Tenant Request" ]);
+  }));
   it('should render title in a h1 tag', async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();

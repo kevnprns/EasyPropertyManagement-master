@@ -128,9 +128,11 @@ export class Collection<T> {
   }
 
   public async update(elem: T): Promise<T> {
+    const data = await this.readFilestore();
     if (!(elem as any)._id) {
       throw new Error('Updating elements must have a valid _id');
     }
+
     this.contents = this.contents.map(e => {
       if ((e as any)._id === (elem as any)._id) {
         return elem;

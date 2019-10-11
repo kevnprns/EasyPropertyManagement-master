@@ -1,0 +1,77 @@
+<!-- <div class="uk-margin-large-top uk-flex uk-flex-center" > -->
+  <h2 class=" uk-margin-large-left uk-margin-large-top">Tenant Request Form: </h2>
+<!-- </div> -->
+
+<div class="uk-margin-large-top  uk-flex uk-flex-center" >
+  <div class="uk-card uk-card-default uk-card-body">
+
+    <form class="uk-margin-large uk-margin-large-left uk-margin-large-right">
+      <div class="uk-flex uk-flex-between">
+        <div class="uk-margin-small-right">
+          <label class="uk-form-label" for="form-horizontal-text">Choose Property</label>
+          <div class="uk-form-controls">
+            <div uk-form-custom="target: > * > span:first-child">
+              <select [(ngModel)]="selectedProperty" name="property" value="2" (change)="propertyError = false; errorMessage= null">
+                <option disabled="true" value="null">Select...</option>
+                <option *ngFor="let property of properties" [ngValue]="property">{{property.name}}</option>
+              </select>
+              <button class="uk-button uk-button-default" type="button" tabindex="-1" [class.uk-button-danger]="propertyError">
+                <span></span>
+                <span uk-icon="icon: chevron-down"></span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="uk-margin-small-left">
+          <label class="uk-form-label" for="form-horizontal-text">Unit Number</label>
+          <div class="uk-form-controls">
+            <div uk-form-custom="target: > * > span:first-child">
+              <input [(ngModel)]="unitInput" name="unit" class="uk-input" [class.uk-form-danger]="unitError" type="text" placeholder="***">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-margin uk-flex uk-flex-between">
+        <div class="uk-margin-small-right">
+          <label class="uk-form-label" for="form-horizontal-text">Name</label>
+          <div class="uk-form-controls">
+            <div uk-form-custom="target: > * > span:first-child">
+              <input [(ngModel)]="nameInput" name="name" class="uk-input" [class.uk-form-danger]="" type="text" placeholder="John Doe">
+            </div>
+          </div>
+        </div>
+        <div class="uk-margin-small-left">
+          <label class="uk-form-label" for="form-horizontal-text">Phone Number</label>
+          <div class="uk-form-controls">
+            <div uk-form-custom="target: > * > span:first-child">
+              <input [(ngModel)]="phoneInput" name="phone" class="uk-input" [class.uk-form-danger]="" type="text" placeholder="*** *** ****">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Email</label>
+        <div class="uk-form-controls">
+          <div uk-form-custom="target: > * > span:first-child">
+            <input [(ngModel)]="emailInput" name="email" class="uk-input uk-form-width-large" [class.uk-form-danger]="" type="text" placeholder="Email">
+          </div>
+        </div>
+      </div>
+
+      <div class="uk-margin">
+        <label class="uk-form-label" for="form-horizontal-text">Request</label>
+        <div class="uk-form-controls">
+          <textarea [(ngModel)]="messageInput" name="message" class="uk-textarea" placeholder="Type full request"></textarea>
+        </div>
+      </div>
+
+       <button class="uk-button uk-button-default" (click)="submitForm()" >Submit Request</button>
+
+    </form>
+
+    <span *ngIf="errorMessage" class="uk-form-danger">**{{errorMessage}}**</span>
+    <span *ngIf="successMessage" class="uk-form-success">{{successMessage}}</span>
+  </div>
+</div>

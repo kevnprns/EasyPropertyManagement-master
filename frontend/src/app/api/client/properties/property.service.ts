@@ -6,11 +6,21 @@ import { APIConfig } from '../api.config';
 
 const PROPERTIES_PATH = `${APIConfig.BASE_API_PATH}/api/properties`;
 
+export interface TenantRequest {
+  name: string;
+  phone: string;
+  email: string;
+  message: string;
+  created: Date;
+  processed?: boolean;
+}
+
 export interface Unit {
   number: string;
   floor: number;
   rent: number;
   vacant?: boolean;
+  tenant_requests: TenantRequest[];
 }
 
 export interface Property {
@@ -19,7 +29,6 @@ export interface Property {
   address: string;
   units: Unit[];
 }
-
 
 @Injectable()
 export class PropertyService {
@@ -38,5 +47,11 @@ export class PropertyService {
         offset: `${params.offset}`
       }
     });
+  }
+
+  public updateProperty(
+    query: any = {},
+  ): Observable<String> {
+    return this.http.put<String>(PROPERTIES_PATH, query);
   }
 }

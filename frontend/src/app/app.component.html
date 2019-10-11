@@ -1,12 +1,23 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="uk-margin" style="">
 
-  <div class=" uk-flex uk-flex-between@m uk-background-primary ">
+  <div class=" uk-flex uk-flex-between uk-flex-bottom uk-background-primary ">
     <div class="uk-margin-top uk-margin-bottom uk-margin-left homepage-title">
       {{ title }}
     </div>
+
+    <div class="uk-margin-top uk-margin-bottom uk-margin-right " >
+      <button class="uk-button uk-button-secondary" type="button">Page</button>
+      <div uk-dropdown="pos: bottom-right">
+        <ul class="uk-nav uk-dropdown-nav">
+            <li  *ngFor="let page of pages" [class.uk-active]="page == activePage" (click)="selectPage(page)"><a>{{page}}</a></li>
+        </ul>
+      </div>
+    </div>
   </div>
 
-  <app-property-list [properties]="properties"></app-property-list>
+  <app-property-list *ngIf="activePage == 'Property Manager'" [properties]="properties"></app-property-list>
+  <app-tenant-request *ngIf="activePage == 'Tenant Request'" [properties]="properties"></app-tenant-request>
+
 
 </div>

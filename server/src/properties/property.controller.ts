@@ -12,4 +12,10 @@ controller.post('/', async (req, res) => {
   res.send(properties);
 });
 
+controller.put('/', async (req, res) => {
+  const query = req.body;
+  const propertyId = await propertyService.updateProperty(query);
+  res.send({propertyId: propertyId});
+});
+
 export { controller as PropertyController };

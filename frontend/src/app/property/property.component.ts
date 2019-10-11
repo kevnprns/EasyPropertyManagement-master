@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Property } from '../api/client/properties/property.service';
+import { Property, Unit } from '../api/client/properties/property.service';
 
 @Component({
   selector: 'app-property',
@@ -9,7 +9,20 @@ import { Property } from '../api/client/properties/property.service';
 })
 export class PropertyComponent implements OnInit {
   @Input() property: Property;
+  selectedUnit: Unit;
 
   constructor() {  }
+
+  ngOnInit() {
+    this.selectedUnit = null;
+  }
+
+  selectUnit(unit: Unit) {
+    this.selectedUnit = unit;
+  }
+
+  closeRequests(){
+    this.selectedUnit = null;
+  }
 
 }

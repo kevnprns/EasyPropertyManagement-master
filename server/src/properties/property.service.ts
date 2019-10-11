@@ -15,4 +15,11 @@ export class PropertyService {
     return this.dao.query(query, offset, limit);
   }
 
+  public updateProperty(
+    query: any = {},
+  ): Promise<string> {
+    return this.dao.update(query);
+  }
+
+
 }

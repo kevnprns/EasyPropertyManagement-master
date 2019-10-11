@@ -5,27 +5,59 @@ Vacant: <span uk-icon="check"></span>
 Occupied: <span uk-icon="close"></span>
 Not Defined: <span uk-icon="question"></span>
 
-<div uk-overflow-auto class="uk-margin uk-margin-left uk-margin-right">
-  <table class="uk-table uk-table-small uk-table-justify uk-table-divider" >
-      <thead>
-          <tr>
-              <th>Vacant</th>
-              <th>Floor</th>
-              <th>Unit</th>
-              <th>Rental Cost</th>
+<div class="uk-flex uk-flex-column">
+  <div uk-overflow-auto class="uk-margin uk-margin-left uk-margin-right">
+    <table class="uk-table uk-table-small uk-table-justify uk-table-divider" >
+        <thead>
+            <tr>
+                <th>Vacant</th>
+                <th>Floor</th>
+                <th>Unit</th>
+                <th>Rental Cost</th>
+            </tr>
+        </thead>
+        <tbody>
+
+          <tr *ngFor="let unit of this.property.units" class="uk-primary" >
+            <td>
+              <span *ngIf="unit.vacant == true" uk-icon="check"></span>
+              <span *ngIf="unit.vacant == false" uk-icon="close"></span>
+              <span *ngIf="unit.vacant == undefined" uk-icon="question"></span>
+            </td>
+            <td>{{ unit.floor }}</td>
+            <td>{{ unit.number }}</td>
+            <td>${{ unit.rent }}</td>
+            <span *ngIf="unit.tenant_requests" uk-icon="warning" class="yellow" (click)="selectUnit(unit);"></span>
           </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let unit of this.property.units" class="uk-primary">
-              <td>
-                <span *ngIf="unit.vacant == true" uk-icon="check"></span>
-                <span *ngIf="unit.vacant == false" uk-icon="close"></span>
-                <span *ngIf="unit.vacant == undefined" uk-icon="question"></span>
-              </td>
-              <td>{{ unit.floor }}</td>
-              <td>{{ unit.number }}</td>
-              <td>${{ unit.rent }}</td>
-          </tr>
-      </tbody>
-  </table>
+        </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="selectedUnit" uk-overflow-auto class="">
+    <hr class="uk-divider-icon">
+
+    <div class="uk-flex uk-flex-between uk-margin">
+      <div class="">
+        Unit: {{selectedUnit.number}}
+      </div>
+      <button type="button" uk-close (click)="closeRequests()"></button>
+    </div>
+    <div *ngFor="let request of this.selectedUnit.tenant_requests" class="" >
+
+        <div class="uk-grid-small uk-flex uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+              <h3 class="uk-card-title uk-margin-remove-bottom">{{request.name}}</h3>
+
+              <p class="uk-text-meta uk-margin-remove-top uk-margin-remove-bottom">{{request.email}}</p>
+              <p class="uk-text-meta uk-margin-remove-top">{{request.phone}}</p>
+            </div>
+            <div class="uk-width-auto">
+              <p class="uk-text-meta uk-margin-remove-top">{{request.created | date:'medium'}}</p>
+            </div>
+        </div>
+      {{request.message}}
+
+      <hr class="uk-divider-small">
+    </div>
+  </div>
 </div>

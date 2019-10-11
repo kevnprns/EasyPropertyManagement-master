@@ -7,6 +7,11 @@ export class PropertyDAO {
     private db: Database = Datastore.getDB()
   ) { }
 
+  public async update(property: Property): Promise<string> {
+    const result = await this.propertyCollection().update(property);
+    return result._id;
+  }
+
   public async insert(property: Property): Promise<string> {
     const result = await this.propertyCollection().insert(property);
     return result._id;

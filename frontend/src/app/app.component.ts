@@ -10,6 +10,9 @@ import { Property, PropertyService } from './api/client/properties/property.serv
 export class AppComponent implements OnInit {
   title = 'Easy Property Management';
 
+  activePage = "Property Manager";
+  pages = ["Property Manager", "Tenant Request"];
+
   properties: Property[] = [];
 
   constructor(
@@ -24,7 +27,11 @@ export class AppComponent implements OnInit {
     this.propertyService.queryProperties()
       .subscribe(properties => {
         this.properties = properties;
-        console.log(this.properties)
+        console.log(this.properties);
       });
+  }
+
+  selectPage(page: string){
+    this.activePage = page;
   }
 }
